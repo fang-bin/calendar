@@ -1,21 +1,46 @@
+// 日历的样式表
 @rem: 200rem;
-
 @goneDayresign-icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD4AAAA+CAMAAABEH1h2AAAA3lBMVEUAAAD////+XV3+eHj/cHD/Wlr/////X1/////+VVX9V1f////+WFj////+oqL+iYn+Wlr/////VVX/V1f/WVn/xsb//v7/WFj/mZn/ubn////+Xl7+c3P+Xl7/oaH+XFz////////9XFz/////////cnL/5ub/3Nz+hIT+kpL+iYn+YGD+bGz+YWH/wMD+c3P/4OD/2Nj/xMT/ubn/qqr+dXX/6ur/0tL/n5//7u7/jY3/6ur/rq7/jIz/goL/rKz/////+/v/ysr/9vb/8/P/7u7/3t7/5+f/2Nj/wsL8NVZAAAAAQHRSTlMAn/bxDFA/NQT7jyb2uPv1zMN7W0j14CEW+/nv6uPZxb2moIdoXvv07eXY0sK4tbWxmoZt99bRy7qyo6CUZD8rPdr1uwAAAd1JREFUSMel19WWqzAUgOEdHEqFUncd1zPHdQcotO//QofpWtNVQSL//XcRQsIGctL05hvxvtj2N48smjrwpBlkotYSREopIu5qNwNidBmx37jFy66Uhs6AKy9qQDEjGrRnlRJs/sLCns0i7SjbYh4oTr7+VI+wpKi9zMFWFZmqalm6dYdshcNWhlZiZCxWzHNtTWJkLulYZ7yKXFXPnjnytXk81k4dOas7cMhUIl4ejXoHTmLkb344JSjUx/l5EdL0Afb5Kgql+nveCMR4MH3X2i0V4zS0Um6gcEbKiTh/BdAmwpq6GugqCqfq0KyJ8/4a3hIUbwUEJSLgSWj6BGMqzkMXbAlObSmOd/AVJeqAJ8M9qY1LfsJiJ853C6mXttYE/UacX5sAA3E+kLsuSMqNK1H9eZ3yriJ6VSpdmYt624D39DaK9Q/2zcT0TOoT2T6MmM8Cq9/dy4wH4fF05QS8nP6Bo5a8fAknVTc8ePsEp/WGMbuOh93LoTRh5qMWXGR2WHWnBxlZbOvv/7Agu8fy34GwPtUgL2dUxq8dKKg3x7Bgv+hcg+Iq92pAs7E6/gvl+dOU01NKN4i/fWDLMl5dtZ+ikNIohRvVfTAs4EjT1yvy3bVtd0xWhp635P9Dn9tW5rkq0AAAAABJRU5ErkJggg==';
-
 @check-icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAWCAMAAADgvdz9AAAAb1BMVEUAAACS0pLh/+Fpvn1ov35pv31ovn5ovn1pv31qv39swoNuxINpvn1pvn5pwH9qwH9pwH9rwYFov31ov31pv35pvn1pwH9ov31qwX9rvn1qwoJpwoBovn1pv31ov31pv35ov35pvn1qv4Bxxo5ovn3QDZ8PAAAAJHRSTlMABAHyyXv63rBjHxL31pNOSCfkv7WhgW1XNzAu6KOfiHM/DAnh15aSAAAAtUlEQVQoz32QWxKDIAxFg4iKb61arX03+19jCdMWq8TzoSRnuGECOwRVyEuhC0TWVjEicrfTxMiiZobec8RICb/NOkSMT0zwRFO7zDWeSztGxl4Wwbd2dsURDWXg3lEiyse3Gsj2zoorNeTnIYqKZJHco+Wc/pLD13oB1DRXKjrEGfxRt9YrmCWNaTZrsAH5VNDPt0hFIqLPAD60ccQhAC+jtTIFBk1aA0vJRxMizBvYoVHb3hsDMRKp7NzrZQAAAABJRU5ErkJggg==';
-
 @showAllCalendar-icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJCAMAAAAM9FwAAAAAPFBMVEUAAACZmZmampqampqbm5ucnJybm5umpqaampqampqampqampqampqbm5ubm5ubm5ubm5ubm5ubm5uampqe9LvmAAAAFHRSTlMA/O7UQh8WDdzIvK+idmlaTTUrkOot6sUAAABGSURBVAjXRU5JEsAwCAJNuu/9/1/bjEnwwiAKIHmGZndkm4bOD77AYz5WfnIrcNscm4trCImLQFIc6vm3KuayZ4SpQKvzAYAdAZauvi5pAAAAAElFTkSuQmCC';
+.signin-calendar-wrap.more {
+  height: 480/@rem;
+}
 
-
-.signin-calendar {
-  text-align: center;
-  padding: 0 46/@rem 0 46/@rem;
-  font-size: 0;
-  .signin-calendar__bd {
-    text-align: left;
+.signin-calendar-wrap {
+  transition: all 0.3s ease-in-out;
+  height: 234/@rem;
+  overflow: hidden;
+  position: relative;
+  .signin-calendar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box; // height: 100%;
+    width: 100%;
+    margin-top: -246/@rem;
+    text-align: center;
+    padding: 0 46/@rem 0 46/@rem;
     font-size: 0;
-    i.unchecked {
-      &:after {
+    .signin-calendar__bd {
+      text-align: left;
+      font-size: 0; // i.unchecked {
+      //   &:after {
+      //     position: absolute;
+      //     top: 0;
+      //     left: 0;
+      //     display: block;
+      //     content: "补";
+      //     width: 62/@rem;
+      //     height: 62/@rem;
+      //     line-height: 62/@rem;
+      //     background: url(@goneDayresign-icon) no-repeat;
+      //     background-size: 100% 100%;
+      //     font-size: 26/@rem;
+      //     color: #FD5353;
+      //   }
+      // }
+      i.unchecked.can-resign:after {
         position: absolute;
         top: 0;
         left: 0;
@@ -29,74 +54,211 @@
         font-size: 26/@rem;
         color: #FD5353;
       }
+      i.checked.can-resign:after {
+        display: none;
+      }
+      i.rechecked.can-resign:after {
+        display: none;
+      }
+      i.checked {
+        font-family: PingFangSC-Regular;
+        color: #666666;
+        background: url(@check-icon) center center no-repeat;
+        background-size: 32/@rem 22/@rem;
+        &:after {
+          position: absolute;
+          top: 0/@rem;
+          left: 0;
+          content: "";
+          background: none;
+        }
+      }
+      i.rechecked {
+        //              top: 20/@rem;
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAilBMVEUAAABywIBpv35ovn6A0JDW/9Zovn1qwH9ov35txYVpv35swoJ2yIZov35pwH5pv35pv31qwH5ovn5rwH5ov35pv31qwX9owH9qwoJovn5pv31ovn1ov35pv31pv31pv35pv31ov35qv4Bqw4Fpvn5pv31pv35pv31pv31ov35qwH5pv35pvn5ovn3M8zn0AAAALXRSTlMAFMj5BQHcTvEQlh4K4YB5b1dHN8WhSTIn9evn19K+ubCnXy7Zs4hzZlQ+sorGCOezAAABRUlEQVQ4y+2T2XKDMAxFTQwYE/aQQPaQPW3v//9eLTdtPUwNfm2n582aM+LaQuwfRwJRu6r+cQM4uiIFsHVSpwdSF05hb0uA576L610AhCfmwozS7iWzkJiHkgOYWyNcU+OTBRRxYLtNDEQvn6cM1Nfm+nMoooZpcigO1gxzaNbTrwx1Mvj8xES1E1CEHhugWoPI2WlJgdqRIbySzGdnKIwRS+E/f6nK1DNtQ5EZ1Q7lRzNMmMmRQ7MLzFFib8gGJYho+l15FEWEvPD6MnEn+W4UdtA0fVkT90NUVSVWkfxR9ie87dcyvBmZTdq8X2n42tNyJMaXYAMhY6lkIE5G9vCM5aLmCyVvL9g0Q26bgih15iADvwX2vit0SPfofJJpgVaeVU74NUCY1HiQTE85dEm1PAiZjAMtj0Ky4g/Lnnw+o89+Le/NzyavgvGMFAAAAABJRU5ErkJggg=='); //              margin: 0 36/@rem 0 0;
+        background-repeat: no-repeat;
+        background-size: 44/@rem 44/@rem;
+        background-position: center center;
+        &:after {
+          position: absolute;
+          top: 0/@rem;
+          left: 0;
+          content: "";
+          background: none;
+        }
+        &:nth-child(7n+7) {
+          margin-right: 0;
+        }
+      }
+      i.checked.todaysigned {
+        text-indent: -9999px;
+        background: url(@check-icon) center center no-repeat;
+        background-size: 32/@rem 22/@rem;
+      }
     }
-    i.checked {
+    i {
+      display: inline-block;
+      vertical-align: middle;
+      position: relative;
+      width: 62/@rem;
+      height: 62/@rem;
+      line-height: 62/@rem;
+      margin: 0/@rem 36/@rem 20/@rem 0;
+      font-size: 28/@rem;
+      text-align: center;
+      text-align: center;
+      font-style: normal;
       font-family: PingFangSC-Regular;
-      color: #666666;
-      background: url(@check-icon) center center no-repeat;
-      background-size: 32/@rem 22/@rem;
-      &:after {
-        position: absolute;
-        top: 0/@rem;
-        left: 0;
-        content: "";
-        background: none;
-      }
-    }
-    i.rechecked {
-      //              top: 20/@rem;
-      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAilBMVEUAAABywIBpv35ovn6A0JDW/9Zovn1qwH9ov35txYVpv35swoJ2yIZov35pwH5pv35pv31qwH5ovn5rwH5ov35pv31qwX9owH9qwoJovn5pv31ovn1ov35pv31pv31pv35pv31ov35qv4Bqw4Fpvn5pv31pv35pv31pv31ov35qwH5pv35pvn5ovn3M8zn0AAAALXRSTlMAFMj5BQHcTvEQlh4K4YB5b1dHN8WhSTIn9evn19K+ubCnXy7Zs4hzZlQ+sorGCOezAAABRUlEQVQ4y+2T2XKDMAxFTQwYE/aQQPaQPW3v//9eLTdtPUwNfm2n582aM+LaQuwfRwJRu6r+cQM4uiIFsHVSpwdSF05hb0uA576L610AhCfmwozS7iWzkJiHkgOYWyNcU+OTBRRxYLtNDEQvn6cM1Nfm+nMoooZpcigO1gxzaNbTrwx1Mvj8xES1E1CEHhugWoPI2WlJgdqRIbySzGdnKIwRS+E/f6nK1DNtQ5EZ1Q7lRzNMmMmRQ7MLzFFib8gGJYho+l15FEWEvPD6MnEn+W4UdtA0fVkT90NUVSVWkfxR9ie87dcyvBmZTdq8X2n42tNyJMaXYAMhY6lkIE5G9vCM5aLmCyVvL9g0Q26bgih15iADvwX2vit0SPfofJJpgVaeVU74NUCY1HiQTE85dEm1PAiZjAMtj0Ky4g/Lnnw+o89+Le/NzyavgvGMFAAAAABJRU5ErkJggg==');
-      //              margin: 0 36/@rem 0 0;
-      background-repeat: no-repeat;
-      background-size: 44/@rem 44/@rem;
-      background-position: center center;
-      &:after {
-        position: absolute;
-        top: 0/@rem;
-        left: 0;
-        content: "";
-        background: none;
-      }
+      color: #999999;
       &:nth-child(7n+7) {
         margin-right: 0;
       }
     }
-    i.checked.todaysigned {
-      text-indent: -9999px;
-      background: url(@check-icon) center center no-repeat;
-      background-size: 32/@rem 22/@rem;
+    .showCalendarBtn {
+      display: inline-block;
+      vertical-align: top;
+      width: 70/@rem;
+      height: 70/@rem;
+      background-image: url(@showAllCalendar-icon);
+      background-size: 24/@rem 14/@rem;
+      background-position: center center;
+      background-repeat: no-repeat;
+      transition: all 0.3s ease-in-out;
+      &.showAllCalendar {
+        transform: rotate(180deg);
+      }
     }
   }
-  i {
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    width: 62/@rem;
-    height: 62/@rem;
-    line-height: 62/@rem;
-    margin: 0/@rem 36/@rem 20/@rem 0;
-    font-size: 28/@rem;
-    text-align: center;
-    text-align: center;
-    font-style: normal;
-    font-family: PingFangSC-Regular;
-    color: #999999;
-    &:nth-child(7n+7) {
-      margin-right: 0;
-    }
+}
+
+// resign的样式表
+@resing-icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGgAAABoCAMAAAAqwkWTAAAAS1BMVEUAAAD/gmT/dFr/dFn/dFn/dVv/dFr/dFn/c1r/d13/fV//c1r/dVz/dVv/c1n/dFr/dFr/dFr/c1n/dFr/dFn/c1v/c1n/dVv/c1nHo7KAAAAAGHRSTlMAB7mosErvwtMdE8g3LOeOemLZbT6H4FdhUIE9AAADMUlEQVRo3rSW3ZKDIAxGE0UsiIr1p7z/k+4QmcnsrlgVOJedlq8kJ1G4jl6mUXSvTTont1cnxmnRkJt+FtIdIMXcQzaaenAnDHWT5S4jp8Szxj71Mp1jXmKdGtMrrVVvmmkVL8d0Kdf68EmVNQj/QGMr/h+fp7d5u0DdIETBpnaB95NbKeF22gnhCzi1bkcouAfaYLMwcAkjgu8Wb10nOFD3N/SsgxXqRnfk3l0DtzC7O/Jqp3Dcvz/DbWbpPCNeyql2nzU8QIcfX0jSe3ssPMTujdJfNaDhGRZ4zDLQSKkvORtZoCABRU5sp2douk+rIQnd0p1OTkHqj0BIBAX1CeO+cU5q0ql7I9UNIQNI1Rsj+4A80JAFTUY0h7JI77WCTChvuVQxERbIxhIRwvI+SCN+IheugqxUR8UT/kMNWdHST8uBcTNkZv5v3tubDdnxjr8BmI+PNpAd48/9/EmuoQA1Vep3h3ooQP+7Sx3ZkRm2uePYIh3iLvXAW7uFQrS8xcGvvwkKMflVDawCQiGQdajJ7WLw8QNFpmO3bcXj5+lAzuWpHNI7/hqpXR82X5Upx8nI02IOI2Uz5ESDbFgHkqc1OceNkZmVAJpblJ7TYkxwTe8Qr1I5/GxYaHJF0RyyYKJFtxbNgZWaR3FFc0LROtoLhXJ4N3TUKVM0Bwz5ttGCKJlDS26jeVWxc9ZhWDE1BxRNLE3TiS6uwrScsBN+qrV3HIRhIAjDmMISDVSRcv+T0iD9nXd3Yg2bC/BJyLH3MY+5gN4nUuDkoNcCQlIc/rrlYThOJM3hMCyP93giaQ7Hmw82kDSHD5YrKJIkhyuISzWUFIdL9celJMXhmeDhiyXB4eHjKU9IZYennOIkJRUdihPKraRUcyi3KCCTUs2hgKQkTko1h5KYIj+UFIcin74ilhSHn6cRiyUcpRGjtYwlHKW1pFmOJRyhWS60/+OY8zOE9t810LCNaFxDJ9sYzTUYtI06XcNb2zjaNWC3rQxcSxDXWse1qLKt3lzLxP+vR/cufHussPct5fvEDPYEJ3pFQS6HWzrGdS4EkPpGqpSQWP/YWyXId59o4q6wpS0++gVSy5P5w2bJpwAAAABJRU5ErkJggg==';
+.resign-in-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  text-align: center;
+  &.hidden {
+    display: none;
   }
-  .showCalendarBtn {
-    display: inline-block;
-    vertical-align: top;
-    width: 70/@rem;
-    height: 70/@rem;
-    background-image: url(@showAllCalendar-icon);
-    background-size: 24/@rem 14/@rem;
-    background-position: center center;
+  .resign_close {
+    position: absolute;
+    top: 7/@rem;
+    right: 7/@rem;
+    width: 50/@rem;
+    height: 50/@rem;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbBAMAAAB/+ulmAAAAIVBMVEUAAADn5+fd3d3h4eHr6+ve3t7d3d3f39/f39/e3t7d3d2FWWgzAAAACnRSTlMAFNQfDODFdV82L2v4/QAAAHZJREFUGNNFzyEOhEAUg+FuVq3boLBI8ATLObBwChRngQQxp2T4RVv1Jl8yTTX95dR77/z6Loea0zzesz5DZ9wk2Cg4CBvNYBg0g2HQ3IPm8qLzK5eUjOX9PFNWujOFbk+hO0h3UHAQDsJGMxgGw3tF86HWqHo/8CsmBMG+MxIAAAAASUVORK5CYII=');
+    background-size: 27/@rem 27/@rem;
+    background-position: center;
     background-repeat: no-repeat;
-    transition: all 0.3s ease-in-out;
-    &.showAllCalendar {
-      transform: rotate(180deg);
+  }
+  .resign-modal-body {
+    position: absolute;
+    left: 112/@rem;
+    top: 433/@rem;
+    width: 530/@rem;
+    background-color: #fff;
+    border-radius: 20/@rem;
+    padding-top: 70/@rem;
+    .resign_title {
+      font-size: 36/@rem;
+      color: #333;
     }
+    .resign_tip {
+      padding: 20/@rem 50/@rem;
+      font-size: 28/@rem;
+      color: #999;
+      line-height: 1.4em;
+      padding-bottom: 40/@rem;
+    }
+    .resign_btn_wrap {
+      display: flex;
+      .resign_yes,
+      .resign_cancel {
+        width: 50%;
+        text-align: center;
+        font-size: 28/@rem;
+        padding: 30/@rem;
+        border-top: 1px solid #eee;
+      }
+      .resign_yes {
+        color: #FF6629;
+      }
+      .resign_cancel {
+        border-right: 1px solid #eee;
+      }
+    }
+    &.resigning_alert {
+      padding-top: 68/@rem;
+      .resign_icon {
+        width: 100/@rem;
+        height: 100/@rem;
+        border-radius: 50%;
+        margin: 0 auto;
+        background-size: 100% 100%;
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGgAAABoCAMAAAAqwkWTAAAAflBMVEUAAAD/lpb+c2r/d27+cmr/dm7+c2r9c2r/c2v/dmz+c2n/hHz+cmn/dmz+c2n9c2r+c2n+cmn+cmr+cmr/c2r/cmz/dWv/e2/+c2r9c2n/c2v/dGv/c2n/c2r9cmr/d2v/em/+cmr+c2r+c2n+c2r+c2n+cmr/dGr/cmv+cmmWh2YvAAAAKXRSTlMABOwTyh7GjlYv8Qj8K7Om+N/SrnFOSQzomz44emSkJBi747fa2LBsazchsw4AAAN1SURBVGjexZrZeuIwDIWPsxBCFvawhEAKFOr3f8FBotQw6bSF5jD/DfARIixriyXcT7EdeMNRJ4+qZQ0mW+vwxscMDpogZb4uDBgUKulWVhSDQeKHWdldrYOekxVMwSSe5B/CRl1QMcvFRda+AJekm9sz4xBksn5qhd7KgMxmcRbVuWNR9WMeH3fOTvxj+4usfcNDVJ4VIoMfkIzFA/EY/sEKu9kPLtX1B3iUSaq/9/EN4atct93gYcqh3OE1/EbOVn28xi/wA/2vX0rydT0vM/yK2Yuu6QvtJbo//QS/xPR1n2b//P6gctACKmln8DmR6i1BCxjVXoRPmaodzNAKM7WIKT6hFq8e1mgJX6zcC9FEFjuI0RplKhHWND1aljpBi+gdV40gPxBDQKscREchbhmLRmu0iu9JzsUNS1lmFy1TyV0LXBPIxqF1JNLscUVXRJdonTj9S1FDDT0EFhIDbmPCYAMCm/QmPuxOnxag0L9O1xt7IgaF7PrekZocidxF8cQj+NCNQc8NhELeJiCR9D6cNmKZgrPwNYS9WiCNpSjsYnODBDSM6C57Txs78FC7O76/voHI5D1ZDHVlRGJJdcDs9JIaMJFNqlFqfGWiyW6JSjMElfVJRKXuugKVlYa7MTPQuXCX40UVSKXU7BAwclEzJ4000m1AJZSiHpKMfFDx1WOlFE5AJZGw/TRBT1OdxtQQNJwxjLjB25l3h1N1Nx02f1IIel5QrbQaouHSxFKrcBou8dVy4goaLpXDo4ZvV5xo5puAhiu3jmp8NFwBmckmGbBwJTHm1GTuinysn/XYUojunvEgZuZPerRExLS7nQQ651HNnMR4/EfAq7/7kotujmhS9hGNMmJZuDt0cqaRxnCwjtGwf9LBoDqtreBgHHW6w1sfDtLhLUIpjQ9olYPEtrBZqvAP2BUjG5eWEKgtA4TaBPFBbYK4tk7Abuu4RpWhN6pgdszWW3O9fdNWM/H/t0cvDd/A5zZ8XQt7WHJb2O7/pBNqU16Z7axw8JljBoqJrOBV1MEJZXq+vhMzR0GU8PyTdLEhDrcoZjU4i+pn943rDO4e1wnH9kzeTcgDSMXenuktloY7UtUd2YusfBJTh8Smgf2gF6xX3TIL/YQy9hZHc9uAM8hninVDFm00MTuOPevgDlvWyyrKO6OhN3hkfPQP63uqUnJXFh8AAAAASUVORK5CYII=');
+        animation: rotate360-sougou 2s linear infinite;
+      }
+      .resign_tip {
+        color: #333;
+        font-family: PingFangSC-Regular;
+        font-size: 32/@rem;
+        letter-spacing: 2/@rem;
+        font-weight: bold;
+        padding-top: 40/@rem;
+        padding-bottom: 73/@rem;
+      }
+    }
+    &.resign_success {
+      .resign_icon {
+        width: 100/@rem;
+        height: 100/@rem;
+        border-radius: 50%;
+        margin: 0 auto;
+        background-image: url(@resing-icon);
+        background-size: 100% 100%; // animation: check-sougou 2s ease forwards;
+      }
+      .resign_tip {
+        color: #333;
+        font-family: PingFangSC-Regular;
+        font-size: 32/@rem;
+        letter-spacing: 2/@rem;
+        font-weight: bold;
+        padding-top: 40/@rem;
+        padding-bottom: 24/@rem;
+      }
+      .resign_prize {
+        padding-bottom: 67/@rem;
+        font-family: PingFangSC-Regular;
+        font-size: 26/@rem;
+        color: #333333;
+        i {
+          font-style: normal;
+          color: #FF6629;
+        }
+      }
+    }
+    &.resign_fail {
+      .resign_tip {
+        font-family: PingFangSC-Regular;
+        font-size: 28/@rem;
+        color: #333333;
+        font-weight: 500;
+        padding-bottom: 67/@rem;
+      }
+    }
+  }
+}
+
+@keyframes rotate360-sougou {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

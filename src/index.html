@@ -11,6 +11,32 @@
       currentTime: new Date().getTime(),
       calendarStatus: false
     }
+    CFG.exposureList = {
+        doSignSuccess: JSON.stringify({
+          dpm: CFG.appId + '.41.11.5',
+          domain: CFG.embedDomain
+        }),
+        doSignBtn: JSON.stringify({
+          dpm: CFG.appId + '.41.11.6',
+          domain: CFG.embedDomain
+        }),
+        doResignBtn: JSON.stringify({
+          dpm: CFG.appId + '.41.16.1',
+          domain: CFG.embedDomain
+        }),
+        doResignCancelBtn: JSON.stringify({
+          dpm: CFG.appId + '.41.16.3',
+          domain: CFG.embedDomain
+        }),
+        doResignFail: JSON.stringify({
+          dpm: CFG.appId + '.41.16.2',
+          domain: CFG.embedDomain
+        }),
+        operPos: {
+          dpm: CFG.appId + '.41.6',
+          domain: CFG.embedDomain
+        }
+      }
   </script>
   <script>!function(e,i){var t=e.documentElement,n=navigator.userAgent.match(/iphone|ipod|ipad/gi),a=n?Math.min(i.devicePixelRatio,3):1,m="orientationchange"in window?"orientationchange":"resize";t.dataset.dpr=a;for(var d,l,c=!1,o=e.getElementsByTagName("meta"),r=0;r<o.length;r++)l=o[r],"viewport"==l.name&&(c=!0,d=l);if(c)d.content="width=device-width,initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0,user-scalable=no";else{var o=e.createElement("meta");o.name="viewport",o.content="width=device-width,initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0,user-scalable=no",t.firstElementChild.appendChild(o)}var s=function(){var e=t.clientWidth;e/a>750&&(e=750*a),window.remScale=e/750,t.style.fontSize=200*(e/750)+"px"};s(),e.addEventListener&&i.addEventListener(m,s,!1)}(document,window);</script>
 </head>
@@ -18,22 +44,49 @@
   <div id="calendar"></div>
   <!-- 日历结构 -->
   <script type="text/template" id="calendarDom">
-    <div class="signin-calendar">
-      <div class="signin-calendar__bd">
-        {{each calendar.list as item index}}
-          {{if monthResignedMap[item]}}
-            <i class="{{if item < calendar.today}}unchecked {{/if}}{{if monthResignedMap[item]}}rechecked {{/if}}{{if item == calendar.today}} todaysigned{{/if}}" data-dateTime="{{item}}"></i> 
-          {{/if}}
-          {{if monthSignedMap[item] && !monthResignedMap[item]}}
-            <i class="{{if item < calendar.today}}unchecked {{/if}}{{if !monthResignedMap[item]}}checked{{/if}}{{if item == calendar.today}} todaysigned{{/if}}" data-dateTime="{{item}}"></i> 
-          {{/if}}
-          {{if !monthResignedMap[item] && !monthSignedMap[item]}}
-            <i class="{{if item < calendar.today}}unchecked {{/if}}{{if item == calendar.today}} todaysigned{{/if}}" data-dateTime="{{item}}">{{item | dayFormat}}</i>
-          {{/if}}
-        {{/each}}
+    <div class="signin-calendar-wrap {{if calendarStatus}} more {{/if}}">
+      <div class="signin-calendar">
+        <div class="signin-calendar__bd">
+          {{each calendar.list item index}}
+            {{if monthResignedMap[item]}}
+              <i class="{{if canResign}} can-resign {{/if}} {{if monthResignedMap[item] && canResign}}rechecked {{/if}}{{if item == calendar.today}} todaysigned{{/if}}" data-dateTime="{{item}}">{{if !canResign}} {{item | dayFormat}} {{/if}}</i> 
+            {{/if}}
+            {{if monthSignedMap[item] && !monthResignedMap[item]}}
+              <i class="{{if canResign}} can-resign {{/if}} {{if !monthResignedMap[item]}}checked{{/if}}{{if item == calendar.today}} todaysigned{{/if}}" data-dateTime="{{item}}"></i> 
+            {{/if}}
+            {{if !monthResignedMap[item] && !monthSignedMap[item]}}
+              <i class="{{if item < calendar.today}} unchecked {{/if}} {{if canResign}} can-resign {{/if}} {{if item == calendar.today}} todaysigned{{/if}}" data-dateTime="{{item}}">{{item | dayFormat}}</i>
+            {{/if}}
+          {{/each}}
+        </div>
+        <span class="showCalendarBtn {{if calendarStatus}}showAllCalendar{{/if}}"></span>
       </div>
-      <span class="showCalendarBtn {{if !calendarStatus}}showAllCalendar{{/if}}"></span>
     </div>
   </script>
+
+  <!-- 补签弹层 -->
+  <script type="text/template" id="resignModal">
+    <div class="resign-in-modal">
+      <div class="resign-modal-body {{if resigning_alert}}resigning_alert{{/if}}{{if resign_success}}resign_success{{/if}}{{if resign_fail}}resign_fail{{/if}}" db-exposure="{{exposure}}">
+        <div class="resign_close"></div>
+        {{if resign_title}}
+        <div class="resign_title">{{resign_title}}</div>
+        {{/if}} {{if resign_icon}}
+        <div class="resign_icon"></div>
+        {{/if}} {{if resign_tip}}
+        <div class="resign_tip">{{resign_tip}}</div>
+        {{/if}} {{if resign_success}}
+        <p class="resign_prize">抽奖机会<i>+{{resign_prize_chance}}</i>,积分<i>+{{resign_prize_credits}}</i></p>
+        {{/if}} {{if resign_yes && resign_cancel}}
+        <div class="resign_btn_wrap">
+          <div class="resign_cancel" db-exposure="{{exposures[1]}}">{{resign_cancel}}</div>
+          <div class="resign_yes" id="doResign" db-exposure="{{exposures[0]}}">{{resign_yes}}</div>
+        </div>
+        {{/if}}
+      </div>
+    </div>
+  </script>
+
+
 </body>
 </html>
